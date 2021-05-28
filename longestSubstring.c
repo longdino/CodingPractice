@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int lengthOfLongestSubstring(char *s) {
-  if (*s == 0)
+  if (*s == 0) // when given s is NULL
     return 0;
 
   int max = 0;
@@ -17,6 +17,8 @@ int lengthOfLongestSubstring(char *s) {
       }
       if (duplicate == 1)
         break;
+
+      // debugging
       for (int k = i; k <= j; k++) {
         printf("%c", s[k]);
       }
@@ -24,6 +26,8 @@ int lengthOfLongestSubstring(char *s) {
       if (length > max) {
         max = length;
       }
+
+      // debugging
       if (i <= j)
         printf(", %d\n", length);
     }
