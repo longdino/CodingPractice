@@ -17,7 +17,15 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2,
     int n3 = 0; // index of nums3
 
     while (n3 < nums3Size) {
-      if (nums1[n1] <= nums2[n2]) {
+      if (n1 >= nums1Size) {
+        nums3[n3] = nums2[n2];
+        n2++;
+        n3++;
+      } else if (n2 >= nums2Size) {
+        nums3[n3] = nums1[n1];
+        n1++;
+        n3++;
+      } else if (nums1[n1] <= nums2[n2]) {
         nums3[n3] = nums1[n1];
         n1++;
         n3++;
@@ -26,35 +34,13 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2,
         n2++;
         n3++;
       }
-
-      if (n1 >= nums1Size /*!nums1[n1]*/) {
-        for (int i = n2; i < nums2Size; i++) {
-          nums3[n3] = nums2[i];
-          n3++;
-        }
-        printf("no nums1\n");
-        printf("n3 = %d\n", n3);
-        printf("n1 = %d\n", n1);
-        printf("n2 = %d\n", n2);
-        break;
-      } else if (n2 >= nums2Size /*!nums2[n2]*/) {
-        for (int i = n1; i < nums1Size; i++) {
-          nums3[n3] = nums1[i];
-          n3++;
-        }
-        printf("no nums2\n");
-        printf("n3 = %d\n", n3);
-        printf("n1 = %d\n", n1);
-        printf("n2 = %d\n", n2);
-        break;
-      }
     }
   }
   // debugging
-  for (int i = 0; i < nums3Size; i++) {
-    printf("%d ", nums3[i]);
-  }
-  printf("\n");
+  //   for (int i = 0; i < nums3Size; i++) {
+  //     printf("%d ", nums3[i]);
+  //   }
+  //   printf("\n");
 
   double median = 0.0;
   int med = nums3Size / 2;
@@ -65,7 +51,7 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2,
     median = nums3[med];
     return median;
   }
-  return 0.0;
+  return median;
 }
 
 int main() {
