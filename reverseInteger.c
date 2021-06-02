@@ -1,17 +1,41 @@
+#include <limits.h>
 #include <stdio.h>
 
 int reverse(int x) {
   /*
       Constraints: -2^31 <= x <= 2^31 - 1
   */
-  if (x < 10)
+  int negative = 0;
+  int lastDigit = 0;
+  long int rev = 0;
+
+  if (x < 10 && x >= 0) // when x is 1s.
     return x;
-  return 0;
+  else if (x < (INT_MIN) || x > (INT_MAX))
+    return 0;
+  if (x < 0) {
+    x *= -1;
+    negative = 1;
+  }
+
+  while (x > 0) {
+    lastDigit = x % 10;
+    rev = (rev * 10) + lastDigit;
+    x /= 10;
+  }
+
+  if (negative == 1)
+    rev *= -1;
+
+  if (rev < INT_MIN || rev > INT_MAX)
+    return 0;
+
+  return rev;
 }
 
 int main() {
   // test cases
-  int x1 = 123;
+  int x1 = 321;
   int x2 = -123;
   int x3 = 120;
   int x4 = 0;
