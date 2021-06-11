@@ -3,10 +3,23 @@
 
 // recursive function
 bool _match2(char *s, int i, char *p, int j) {
-  if (!s[i] && !p[j])
+    bool match = true;
+  if (!s[i] && !p[j]) // when it is last element: that means it could go thorugh all elements matching.
     return true;
-  if (s[i] == p[j])
+  if (p[j] == '.' || s[i] == p[j])  // when the elements are matched or the pattern is '.'
     return _match2(s, i + 1, p, j + 1);
+  else {
+      if (p[j] == '*') {    
+          /*
+          * Call _match2() function 
+          * Consider these cases:
+          *     1. If true: then proceed on to that level
+          *     2. If false, but '.': that means true. Proceed on to that level
+          *     3. If false, but '*' indicates '0': that could mean true.
+          *     4. If false: we're not going to that level
+          */
+      }
+  }
 
   return false;
 }
