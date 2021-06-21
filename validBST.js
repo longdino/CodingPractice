@@ -11,22 +11,14 @@
  * @return {boolean}
  */
 
-var isValidBST = function(root) {
-    
+var _isValidBST = function(root, min, max) {
     if (!root) return true;
-    if (root.left) {
-        if (root.left.val >= root.val) return false;
-    }
-    if (root.right) {
-        if (root.right.val <= root.val) return false;
-    }
-    var left = isValidBST(root.left);
-    var right = isValidBST(root.right);
-    if (left && root.left.val.left) {
-        left = isValidBST(root.left.left);
-    }
-    if (right && root.right.right) {
-        right = isValidBST(root.right.right);
-    }
+    if (root.val <= min || root.val >= max) return false;
+    var left = _isValidBST(root.left, min, root.val);
+    var right = _isValidBST(root.right, root.val, max);
     return left && right;
+
+};
+var isValidBST = function(root) {
+    return _isValidBST(root, -Infinity, Infinity);
 };
