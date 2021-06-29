@@ -12,17 +12,24 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
-    console.log("root: " + root.val);
     if(root.val == val) {
-        console.log("Found it! " + root.val);
         return root;
     }
-    else if (root.left || root.right) {
+    else if(root.left || root.right) {
         var left = root;
         var right = root;
-        if(root.left) left = searchBST(root.left, val);
-        if(root.right) right = searchBST(root.right, val);
-        
+        if(root.left) {
+            left = searchBST(root.left, val);
+            if(left && left.val == val) return left;
+        }
+        if(root.right) {
+            right = searchBST(root.right, val);
+            if(right && right.val == val) return right;
+        }
+        if(!left && !right) {
+            root = null;
+            return root;
+        }
     }
     else {
         root = null;
