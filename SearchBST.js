@@ -12,26 +12,27 @@
  * @return {TreeNode}
  */
 var searchBST = function(root, val) {
+    if(!root) {
+        root = null;
+        return root;
+    }
+    
     if(root.val == val) {
         return root;
     }
-    else if(root.left || root.right) {
-        var left = root;
-        var right = root;
-        if(root.left) {
-            left = searchBST(root.left, val);
-            if(left && left.val == val) return left;
-        }
-        if(root.right) {
-            right = searchBST(root.right, val);
-            if(right && right.val == val) return right;
-        }
-        if(!left && !right) {
-            root = null;
-            return root;
-        }
+    
+    var tree = root;
+    
+    if(root.val > val) {
+        tree = searchBST(root.left, val);
+        if(tree && tree.val == val) return tree;
     }
-    else {
+    else if(root.val < val) {
+        tree = searchBST(root.right, val);
+        if(tree && tree.val == val) return tree;
+    }
+    
+    if(!tree) {
         root = null;
         return root;
     }
