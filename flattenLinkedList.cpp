@@ -20,7 +20,6 @@ public:
         while(head) {
             if(head->child) {
                 tnext = head->next ? head->next : NULL;
-                tprev = head->next ? head->next->prev: NULL;
                 lvl = flatten(head->child);
                 if(!lvl) break;
                 lvl->prev = head;
