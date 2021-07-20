@@ -22,3 +22,5 @@ var _isValidBST = function(root, min, max) {
 var isValidBST = function(root) {
     return _isValidBST(root, -Infinity, Infinity);
 };
+
+console.log("Hello World");
