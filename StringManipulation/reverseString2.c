@@ -33,8 +33,9 @@ char * reverseStr(char * s, int k){
         
         while(l < size) {
             i = l;
-            j = l + k - 1;
-            for(int m = 0; m < k/2; m++){
+            j = (l + k - 1) >= size ? size - 1 : l + k - 1;
+            int n = (j - i + 1) / 2;
+            for(int m = 0; m < n; m++){
                 temp = s[i];
                 s[i] = s[j];
                 s[j] = temp;
