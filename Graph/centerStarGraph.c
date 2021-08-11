@@ -1,11 +1,6 @@
 int findCenter(int** edges, int edgesSize, int* edgesColSize){
-    int u1 = edges[0][0];
-    int v1 = edges[0][1];
-    int u2 = edges[1][0];
-    int v2 = edges[1][1];
-    
-    if (u1 == u2 || u1 == v2) return u1;
-    else if (v1 == u2 || v1 == v2) return v1;
+    if (edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) return edges[0][0];
+    else if (edges[0][1] == edges[1][0] || edges[0][1] == edges[1][1]) return edges[0][1];
     
     return 0;
 }
